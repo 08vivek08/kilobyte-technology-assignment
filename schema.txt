@@ -1,0 +1,140 @@
+Schema
+
+User:
+    role(ENUM): Customer,Delivery person, Admin
+    phone(String)
+    password(String)
+
+Addresses[{
+    name(String): NULL
+    Longitude(NUMBER): NULL
+    Latitude(NUMBER): NULL
+}]
+
+Item:
+    Name(String)
+    CategoryName(String)
+    pickupAddress[address(Address.MongodbId)]
+
+Order:
+    // DeliveryAddressId 
+    Customer(User.MongodbId)
+    Items[{
+        ItemId(Item.MongodbId),
+        Quantity(NUMBER)
+    }]
+    DeliveryPerson(User.MongodbId)
+    OrderStages{
+        TaskCreated(Date)=Date.Now
+        ReachedStore(Date)
+        ItemsPicked(Date)
+        Enroute(Date)
+        Delivered(Date)
+        Canceled(Date)(null)
+    }
+    PickUpLocation[Address.MongodbId]
+-------------------------------------------------------
+Apis
+
+User -> CreateOrder(
+    creates order by this
+    Admin assigns del. person
+    Choose PickUpLocation Randomly forEach item
+)
+Admin -> SelectDeliveryPerson for EachOrder whose 
+
+DeliverPerson -> Updates OrderStages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
